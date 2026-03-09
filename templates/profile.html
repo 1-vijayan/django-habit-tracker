@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Profile</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+margin:0;
+}
+
+.container{
+width:600px;
+margin:auto;
+margin-top:80px;
+}
+
+.card{
+background:#1e293b;
+padding:30px;
+border-radius:10px;
+}
+
+.stat{
+margin-top:15px;
+font-size:18px;
+}
+
+.back{
+margin-top:20px;
+display:inline-block;
+background:#22c55e;
+padding:8px 16px;
+border-radius:6px;
+text-decoration:none;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h2>{{ user.username }}'s Profile</h2>
+
+<div class="stat">
+Total Habits: {{ total_habits }}
+</div>
+
+<div class="stat">
+Completed Tasks: {{ completed }}
+</div>
+
+<div class="stat">
+Best Streak:
+{% if best_streak %}
+{{ best_streak.streak }} days
+{% else %}
+0
+{% endif %}
+</div>
+
+<a href="/" class="back">Back to Dashboard</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

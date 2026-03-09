@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 40px;
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 600px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    background: white;
+}
+.chart-box{
+background:#1e293b;
+padding:20px;
+border-radius:10px;
+margin-bottom:30px;
+}
+.light-mode{
+background:#f1f5f9;
+color:black;
+}
+
+.light-mode .card,
+.light-mode .form-box,
+.light-mode .stat-card,
+.light-mode .chart-box{
+background:white;
+color:black;
+}
