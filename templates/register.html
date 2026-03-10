@@ -75,12 +75,18 @@ color:#38bdf8;
 text-decoration:none;
 }
 
+.error{
+color:#ef4444;
+margin-bottom:10px;
+font-size:14px;
+}
+
 </style>
 
 </head>
 
 <body>
-    
+
 <div class="auth-container">
 
 <div class="auth-box">
@@ -90,6 +96,12 @@ text-decoration:none;
 <form method="post">
 
 {% csrf_token %}
+
+{% if form.errors %}
+<div class="error">
+{{ form.errors }}
+</div>
+{% endif %}
 
 <div class="form-group">
 <label>Username</label>
@@ -118,7 +130,8 @@ Already have an account?
 </div>
 
 </div>
-<script src="{% static 'js/theme.js' %}"></script>
-</body>
 
+<script src="{% static 'js/theme.js' %}"></script>
+
+</body>
 </html>
