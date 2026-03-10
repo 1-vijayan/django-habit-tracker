@@ -359,7 +359,7 @@ title="{{ day.date }} : {{ day.count }} completed">
 </div>
 
 <div class="progress-bar">
-<div class="progress" style="width: {{ habit.streak|floatformat:0 }}0%"></div>
+<div class="progress" style="width: {{ habit.streak|default:0 }}0%"></div>
 </div>
 
 <div class="actions">
@@ -388,13 +388,14 @@ Delete
 
 <script>
 
-/* CHART */
+/* CHART SAFE DATA */
 
-const labels = {{ week_labels|safe }};
-const data = {{ week_data|safe }};
+const labels = {{ week_labels|default:"[]"|safe }};
+const data = {{ week_data|default:"[]"|safe }};
 
 const ctx = document.getElementById('habitChart');
 
+if(ctx){
 new Chart(ctx,{
 type:'bar',
 data:{
@@ -406,32 +407,37 @@ backgroundColor:'#22c55e'
 },
 options:{
 plugins:{legend:{display:false}},
-scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}
+scales:{
+y:{
+beginAtZero:true,
+ticks:{stepSize:1}
 }
-})
+}
+}
+});
+}
 
 /* THEME TOGGLE */
 
-const toggle=document.getElementById("themeToggle")
+const toggle=document.getElementById("themeToggle");
 
 if(localStorage.getItem("theme")==="light"){
-document.body.classList.add("light")
-toggle.textContent="☀️"
+document.body.classList.add("light");
+toggle.textContent="☀️";
 }
 
 toggle.onclick=()=>{
-document.body.classList.toggle("light")
+document.body.classList.toggle("light");
 
 if(document.body.classList.contains("light")){
-localStorage.setItem("theme","light")
-toggle.textContent="☀️"
+localStorage.setItem("theme","light");
+toggle.textContent="☀️";
 }else{
-localStorage.setItem("theme","dark")
-toggle.textContent="🌙"
+localStorage.setItem("theme","dark");
+toggle.textContent="🌙";
 }
 }
 
 </script>
-
 </body>
 </html>
