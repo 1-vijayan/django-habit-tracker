@@ -1,23 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from django.utils import timezone
 from datetime import date, timedelta
 
 from .models import Habit, HabitLog
 from .forms import RegisterForm
 
-from django.contrib.auth.decorators import login_required
 
+# PROFILE PAGE
 @login_required
 def profile(request):
 
     user = request.user
-
     habits = Habit.objects.filter(user=user)
 
     total_habits = habits.count()
-
     best_streak = habits.order_by("-streak").first()
 
     completed = HabitLog.objects.filter(habit__user=user).count()
@@ -82,7 +79,7 @@ def home(request):
         date=today
     ).count()
 
-    # WEEKLY CHART
+    # WEEKLY CHART DATA
     week_labels = []
     week_data = []
 
@@ -100,7 +97,7 @@ def home(request):
         week_labels.append(label)
         week_data.append(count)
 
-    # ACTIVITY CALENDAR (last 30 days)
+    # ACTIVITY CALENDAR (LAST 30 DAYS)
     activity = []
 
     for i in range(30):
@@ -139,13 +136,11 @@ def complete_habit(request, habit_id):
 
     today = date.today()
 
-    # create daily log
     HabitLog.objects.get_or_create(
         habit=habit,
         date=today
     )
 
-    # streak logic
     if habit.last_completed == today:
         return redirect("home")
 
